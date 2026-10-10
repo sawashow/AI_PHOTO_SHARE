@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}ログイン - 写真共有アプリ{% endblock %}
+{% block content %}
+  <h1>ログイン</h1>
+  {% if auth_error %}<p class="auth-error">{{ auth_error }}</p>{% endif %}
+  <form class="form" method="post">
+    {{ form.csrf_token }}
+    <p class="field">
+      {{ form.username.label }}
+      {{ form.username }}
+      {% for error in form.username.errors %}<span class="error">{{ error }}</span>{% endfor %}
+    </p>
+    <p class="field">
+      {{ form.password.label }}
+      {{ form.password }}
+      {% for error in form.password.errors %}<span class="error">{{ error }}</span>{% endfor %}
+    </p>
+    <p>{{ form.submit(class_="submit") }}</p>
+  </form>
+  <p class="follow"><a href="{{ url_for('register') }}">ユーザー登録</a></p>
+{% endblock %}

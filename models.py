@@ -1,6 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 
+from flask_login import UserMixin
 from peewee import CharField, DateTimeField, ForeignKeyField, Model, SqliteDatabase
 
 db = SqliteDatabase(
@@ -14,7 +15,7 @@ class BaseModel(Model):
         database = db
 
 
-class User(BaseModel):
+class User(UserMixin, BaseModel):
     username = CharField(max_length=50)
     username_normalized = CharField(max_length=50, unique=True)
     email = CharField(max_length=254)

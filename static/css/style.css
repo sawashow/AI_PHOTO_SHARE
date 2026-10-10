@@ -1,0 +1,157 @@
+:root {
+  --ink: #171717;
+  --muted: #6f6f6f;
+  --line: #171717;
+  --error: #8d3a3a;
+  --bg: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+button:hover {
+  opacity: 0.55;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 40px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+
+.brand {
+  letter-spacing: 0.22em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav form {
+  margin: 0;
+}
+
+.nav button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 40px 120px;
+}
+
+h1 {
+  margin: 0 0 36px;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+}
+
+.form .field {
+  margin: 0 0 32px;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+.form input:not([type="hidden"]) {
+  width: 100%;
+  padding: 8px 0 10px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: 0.04em;
+}
+
+.form input:focus {
+  outline: none;
+  border-bottom-width: 2px;
+}
+
+.error,
+.auth-error {
+  display: block;
+  margin-top: 8px;
+  color: var(--error);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.submit {
+  margin-top: 8px;
+  padding: 14px 28px;
+  border: 0;
+  background: var(--ink);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+}
+
+.follow {
+  margin-top: 28px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 640px) {
+  .site-header,
+  .page {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .site-header {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  .nav {
+    gap: 16px;
+  }
+
+  .page {
+    padding-top: 56px;
+  }
+}
