@@ -1,6 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField
+from flask_wtf.file import FileAllowed, FileField, FileRequired, FileSize
+from wtforms import PasswordField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length, Regexp
+
+ALLOWED_IMAGE_EXTENSIONS = ["png", "jpg", "jpeg", "gif"]
+MAX_IMAGE_BYTES = 5 * 1024 * 1024
 
 
 class RegisterForm(FlaskForm):
@@ -57,3 +61,25 @@ class LoginForm(FlaskForm):
         if self.username.data:
             self.username.data = self.username.data.strip()
         return super().validate(extra_validators=extra_validators)
+
+
+class PostForm(FlaskForm):
+    image = FileField(
+        "写真",
+        validators=[
+            FileRequired(message="写真を選んでください。"),
+            FileAllowed(
+                ALLOWED_IMAGE_EXTENSIONS,
+                message="写真は PNG、JPEG、GIF のどれかを選んでください。",
+            ),
+            FileSize(
+                max_size=MAX_IMAGE_BYTES,
+                message="写真は 5MB 以下にしてください。",
+            ),
+        ],
+    )
+    caption = TextAreaField(
+        "キャプション",
+        validators=[Length(max=200, message="キャプションは200文字以内で入力してください。")],
+    )
+    submit = SubmitField("投稿する")

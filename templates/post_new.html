@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}投稿作成 - 写真共有アプリ{% endblock %}
+{% block content %}
+  <h1>投稿作成</h1>
+  <form class="form" method="post" action="{{ url_for('create_post') }}" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <p class="field">
+      {{ form.image.label }}
+      {{ form.image(accept=".png,.jpg,.jpeg,.gif,image/png,image/jpeg,image/gif") }}
+      <span class="hint">PNG、JPEG、GIF の画像を 1 枚。5MB まで。</span>
+      {% for error in form.image.errors %}<span class="error">{{ error }}</span>{% endfor %}
+    </p>
+    <p class="field">
+      {{ form.caption.label }}
+      {{ form.caption(rows=4, maxlength=200) }}
+      <span class="hint">200 文字まで。空でもかまいません。</span>
+      {% for error in form.caption.errors %}<span class="error">{{ error }}</span>{% endfor %}
+    </p>
+    <p>{{ form.submit(class_="submit") }}</p>
+  </form>
+{% endblock %}
